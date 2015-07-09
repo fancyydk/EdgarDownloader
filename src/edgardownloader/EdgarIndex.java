@@ -10,6 +10,9 @@ package edgardownloader;
  * @author fancyydk
  */
 public class EdgarIndex {
+    public static final int FIRST_QUARTER = 1;
+    public static final int LAST_QUARTER = 4;
+    
     private int startYear;
     private int startQuarter;
     private int endYear;
@@ -72,5 +75,26 @@ public class EdgarIndex {
     }
     public void setAll(String startYear, String startQuarter, String endYear, String endQuarter) {
         setAll(Integer.parseInt(startYear), Integer.parseInt(startQuarter), Integer.parseInt(endYear), Integer.parseInt(endQuarter));
+    }
+    
+    public boolean isValidIndex() {
+        if (startYear < 0 || startYear > endYear) {
+            return false;
+        }
+        if (endYear < 0 || endYear < startYear) {
+            return false;
+        }
+        if (startQuarter < 1 || startQuarter > 4) {
+            return false;
+        }
+        if (endQuarter < 1 || endQuarter > 4) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public String toString() {
+        return startYear + "," + startQuarter + " - " + endYear + "," + endQuarter;
     }
 }
